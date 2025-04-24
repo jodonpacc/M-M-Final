@@ -1,0 +1,266 @@
+body {
+    background-color: grey;
+    color: white;
+} 
+
+table {
+    border-collapse: collapse;
+    width: 100px;
+    background-color: #333;
+}
+
+th {
+    border: 1px solid black;
+    padding: 8px;
+}
+
+td {
+    background-color: black;
+}
+
+td.hover {
+  background-color: white;
+  color: gold;
+  outline: black;
+  outline-width: 5px;
+}
+
+#cName::first-letter{
+    color: purple;
+    size: 200%;
+    font-style: italic;
+    
+} 
+
+#statButton {
+  background-color: #333;
+  overflow: hidden;
+  color: white;
+  overflow: hidden;
+  text-align: center;
+}
+
+#statButton a:hover {
+  background-color: white;
+  color: gold;
+  outline: black;
+  outline-width: 5px;
+}
+
+#statButton a:active {
+  background-color: white;
+  color: red;
+}
+
+.topnav {
+    background-color: #333;
+    overflow: hidden;
+  }
+  
+  .topnav a {
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+  }
+  
+  .topnav a:hover {
+    background-color: #ddd;
+    color: black;
+  }
+  
+  .topnav a.active {
+    background-color: #04AA6D;
+    color: white;
+  }
+
+  .split {
+    height: 40%;
+    /*width: 49.68%; Edge to Edge */
+    width:49%;
+    position: absolute;
+    /*display:flex;
+    flex-direction: column; */
+    z-index: 1;
+    overflow-x: hidden;
+    /*padding-top: 20px; */
+    color:white;
+    text-shadow:
+      1px 1px 2px red,
+      0 0 1em blue,
+      0 0 0.2em blue;
+    font-size:x-large; 
+  }
+
+  
+  .topleft {
+    left: 1;
+    top: 18%;
+    outline-color: rgba(112, 97, 11, 0.685);
+    outline-style: inset;
+    outline-width: 5px;
+    background-image: url("./pictures/spooky.jpg");
+    background-repeat: no-repeat;
+    background-position: 50% 20%;
+    background-size: 100%;
+    color:white;
+  }
+  
+  .topright {
+    right: 1%;
+    top: 18%;
+    outline-color: rgba(112, 97, 11, 0.685);
+    outline-style: inset;
+    outline-width: 5px;
+    background-image: url("./pictures/mage.jpg");
+    background-repeat: no-repeat;
+    background-position: 50% 20%;
+    background-size: 110%;
+  }
+
+  .bottomleft {
+    left:1;
+    bottom:1%;
+    outline-color: rgba(112, 97, 11, 0.685);
+    outline-style: inset;
+    outline-width: 5px;
+    background-image: url("./pictures/shadow.jpg");
+    background-repeat: no-repeat;
+    background-position: 50% 20%;
+    background-size: 110%;
+
+
+  }
+  
+  .bottomright {
+    right:1%;
+    bottom:1%;
+    outline-color: rgba(112, 97, 11, 0.685);
+    outline-style: inset;
+    outline-width: 5px;
+    background-image: url("./pictures/priest.jpg");
+    background-repeat: no-repeat;
+    background-position: 50% 20%;
+    background-size: 110%;
+    color:white;
+  }
+  
+  .centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+  
+  .centered img {
+    width: 150px;
+    border-radius: 50%;
+  }
+
+  #human {
+    background-image: url("./pictures/human.jpg");
+    background-repeat: no-repeat;
+    background-position: 50% 20%;
+    background-size: 100%;
+  }
+
+  #elf {
+    background-image: url("./pictures/elf.jpg");
+    background-repeat: no-repeat;
+    background-position: 50% 20%;
+    background-size: 100%;
+    color:white;
+  }
+
+  #dwarf {
+    background-image: url("./pictures/dwarf.jpg");
+    background-repeat: no-repeat;
+    background-position: 100% 20%;
+    background-size: 100%;
+    color:white;
+  }
+
+  #orc {
+    background-image: url("./pictures/orc.jpg");
+    background-repeat: no-repeat;
+    background-position: 70% 20%;
+    background-size: 100%;
+  }
+
+  h1 {
+    text-decoration: underline;
+    text-decoration-color: purple;
+    text-decoration-thickness: 3px;
+    font: bold;
+    text-shadow: 5px black;
+  }
+
+  #vet {
+    background-image: url("./pictures/orcwar.jpg");
+    background-repeat: no-repeat;
+    background-position: 50% 60%;
+    background-size: 100%;
+    color:white;
+  }
+
+  #urch {
+    background-image: url("./pictures/urchin.jpg");
+    background-repeat: no-repeat;
+    background-position: 100% 20%;
+    background-size: 100%;
+    color:white;
+  }
+
+  #far {
+    background-image: url("./pictures/travel.jpg");
+    background-repeat: no-repeat;
+    background-position: 70% 20%;
+    background-size: 100%;
+    color:white;
+  }
+
+  #out {
+    background-image: url("./pictures/out.jpg");
+    background-repeat: no-repeat;
+    background-position: 70% 30%;
+    background-size: 100%;
+  }
+
+  #canvas{
+    outline: solid;
+    outline-color: black;
+    outline-width: 2px;
+    position: absolute;
+    background-color: white; 
+  }
+
+  #charArt {
+    outline: solid;
+    outline-color: black;
+    background-color: white;
+    outline-width: 2px;
+    position: absolute;
+    right: 10%;
+    top: 30%;
+  }
+
+  .container {
+    display:grid;
+    grid-template-areas: 
+      "drawing toolbar";
+  }
+
+  .container > div.page {
+    grid-area: drawing;
+  }
+
+  .container > div.toolbar {
+    grid-area:toolbar;
+  }
+
+  #cName {
+    font-size: xx-large;
+  }
