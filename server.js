@@ -1,4 +1,6 @@
 const express = require ('express');
+const Character = require('./models/Character.js');
+const User = require('./models/User.js');
 const app = express();
 
 app.set('view engine','pug');
