@@ -213,12 +213,14 @@ function statSheetUpdate(score,mod,save,scoretag,modtag,savetag){
     document.getElementById(scoretag).innerHTML = ""+score
     document.getElementById(modtag).innerHTML = ""+mod
     document.getElementById(savetag).innerHTML = ""+save
+    document.getElementById(scoretag+'i').value = score
 }
 
 function nameUpdate(){
     cName = document.getElementById("nform").value;
     document.getElementById("cName").innerText = ""+cName;
     localStorage.setItem("Name",cName);
+    document.getElementById('nameInput').value = cName;
     document.getElementById("nameField").hidden = true;
 }
 
@@ -230,21 +232,51 @@ function nameClick(){
 function updateSheet(){
     cClass = document.getElementById("classform").value;
     localStorage.setItem("class",cClass);
+    document.getElementById('classInput').value = cClass;
     race = document.getElementById("raceform").value;
     localStorage.setItem("race",race);
+    document.getElementById('raceInput').value = race;
     back = document.getElementById("backform").value;
     localStorage.setItem("back",back);
+    document.getElementById('backInput').value = back;
     document.getElementById("desc").innerHTML = "Character Choices: " + race + " " + cClass + " - "+ back;
     statUpdate();
 }
 
 function savePic(){
-    var image = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream"); 
+    let imgString = canvas.toDataURL('image/png');
+    localStorage.setItem('imgString', imgString)
+    var image = imgString.replace("image/png", "image/octet-stream"); 
     localStorage.setItem("pic",image);   
 }
 function getPic(){
     document.getElementById("charArt").src = localStorage.getItem("pic");
+    document.getElementById('picInput').value = localStorage.getItem('imgString');
 }
 
-
+async function saveChar(event) {
+    let payload = {
+        charName: document.getElementById('nameInput').value,
+        charClass: document.getElementById('classInput').value,
+        charRace: document.getElementById('raceInput').value,
+        charBack: document.getElementById('backInput').value,
+        portrait: document.getElementById('picInput').value,
+        str: document.getElementById('stri').value,
+        dex: document.getElementById('dexi').value,
+        con: document.getElementById('coni').value,
+        intel: document.getElementById('inti').value,
+        wis: document.getElementById('wisi').value,
+        cha: document.getElementById('chai').value
+    };
+    try {
+        let response = await fetch('/saveChar', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(payload)
+        });
+        console.log(response);
+    } catch (e) {
+        console.log(e);
+    }
+};
 
