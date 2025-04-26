@@ -38,7 +38,7 @@ else {
     strs; dexs; cons; ints; wiss; chas;
     strb=0; dexb=0; conb=0; intb=0; wisb=0; chab=0;
     cName = ""; race = ""; cClass = "Mage"; back = "";
- 
+    document.getElementById('saveBtn').addEventListener('click', saveHandler);
     statKeeper();
 }
 
@@ -49,35 +49,39 @@ canvas.addEventListener('mousemove',draw);
 
 function statKeeper(){
     console.log("Stat Keeper?")
-    document.getElementById("cName").innerText = ""+localStorage.getItem("Name");
-    strb = localStorage.getItem("strb")
-    dexb = localStorage.getItem("dexb")
-    conb = localStorage.getItem("conb")
-    intb = localStorage.getItem("intb")
-    wisb = localStorage.getItem("wisb")
-    chab = localStorage.getItem("chab")
-    race = localStorage.getItem("race")
-    cClass = localStorage.getItem("class")
-    back = localStorage.getItem("back")
+    document.getElementById("cName").innerText = ""+sessionStorage.getItem("Name");
+    strb = sessionStorage.getItem("strb")
+    dexb = sessionStorage.getItem("dexb")
+    conb = sessionStorage.getItem("conb")
+    intb = sessionStorage.getItem("intb")
+    wisb = sessionStorage.getItem("wisb")
+    chab = sessionStorage.getItem("chab")
+    race = sessionStorage.getItem("race")
+    cClass = sessionStorage.getItem("class")
+    back = sessionStorage.getItem("back")
     document.getElementById("desc").innerHTML = "Character Choices: " + race + " " + cClass + " - "+ back;
     raceEval();
     statUpdate();
-
+    document.getElementById('nameInput').value = sessionStorage.getItem('Name');
+    document.getElementById('classInput').value = sessionStorage.getItem('class');
+    document.getElementById('raceInput').value = sessionStorage.getItem('race');
+    document.getElementById('backInput').value = sessionStorage.getItem('back');
+    document.getElementById('picInput').value = sessionStorage.getItem('imgString');
 }
 
 function fullroll() {
     strb = Math.floor(Math.random() *18)+3;
-    localStorage.setItem("strb",strb);
+    sessionStorage.setItem("strb",strb);
     dexb = Math.floor(Math.random() *18)+3;
-    localStorage.setItem("dexb",dexb);
+    sessionStorage.setItem("dexb",dexb);
     conb = Math.floor(Math.random() *18)+3;
-    localStorage.setItem("conb",conb);
+    sessionStorage.setItem("conb",conb);
     intb = Math.floor(Math.random() *18)+3;
-    localStorage.setItem("intb",intb);
+    sessionStorage.setItem("intb",intb);
     wisb = Math.floor(Math.random() *18)+3;
-    localStorage.setItem("wisb",wisb);
+    sessionStorage.setItem("wisb",wisb);
     chab = Math.floor(Math.random() *18)+3;
-    localStorage.setItem("chab",chab);
+    sessionStorage.setItem("chab",chab);
     statUpdate();
 }
 
@@ -219,7 +223,7 @@ function statSheetUpdate(score,mod,save,scoretag,modtag,savetag){
 function nameUpdate(){
     cName = document.getElementById("nform").value;
     document.getElementById("cName").innerText = ""+cName;
-    localStorage.setItem("Name",cName);
+    sessionStorage.setItem("Name",cName);
     document.getElementById('nameInput').value = cName;
     document.getElementById("nameField").hidden = true;
 }
@@ -231,13 +235,13 @@ function nameClick(){
 
 function updateSheet(){
     cClass = document.getElementById("classform").value;
-    localStorage.setItem("class",cClass);
+    sessionStorage.setItem("class",cClass);
     document.getElementById('classInput').value = cClass;
     race = document.getElementById("raceform").value;
-    localStorage.setItem("race",race);
+    sessionStorage.setItem("race",race);
     document.getElementById('raceInput').value = race;
     back = document.getElementById("backform").value;
-    localStorage.setItem("back",back);
+    sessionStorage.setItem("back",back);
     document.getElementById('backInput').value = back;
     document.getElementById("desc").innerHTML = "Character Choices: " + race + " " + cClass + " - "+ back;
     statUpdate();
@@ -245,38 +249,44 @@ function updateSheet(){
 
 function savePic(){
     let imgString = canvas.toDataURL('image/png');
-    localStorage.setItem('imgString', imgString)
+    sessionStorage.setItem('imgString', imgString)
     var image = imgString.replace("image/png", "image/octet-stream"); 
-    localStorage.setItem("pic",image);   
+    sessionStorage.setItem("pic",image);   
 }
 function getPic(){
-    document.getElementById("charArt").src = localStorage.getItem("pic");
-    document.getElementById('picInput').value = localStorage.getItem('imgString');
+    document.getElementById("charArt").src = sessionStorage.getItem("pic");
+    document.getElementById('picInput').value = sessionStorage.getItem('imgString');
 }
 
-async function saveChar(event) {
-    let payload = {
-        charName: document.getElementById('nameInput').value,
-        charClass: document.getElementById('classInput').value,
-        charRace: document.getElementById('raceInput').value,
-        charBack: document.getElementById('backInput').value,
-        portrait: document.getElementById('picInput').value,
-        str: document.getElementById('stri').value,
-        dex: document.getElementById('dexi').value,
-        con: document.getElementById('coni').value,
-        intel: document.getElementById('inti').value,
-        wis: document.getElementById('wisi').value,
-        cha: document.getElementById('chai').value
-    };
-    try {
-        let response = await fetch('/saveChar', {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify(payload)
-        });
-        console.log(response);
-    } catch (e) {
-        console.log(e);
+function saveHandler(event) {
+    let xhr = new XMLHttpRequest();
+    xhr.addEventListener('load', saveResReceivedHandler);
+    xhr.responseType = 'json';
+    let reqString = 'charName='+encodeURIComponent(document.getElementById('nameInput').value) +
+                    '&charClass='+encodeURIComponent(document.getElementById('classInput').value) + 
+                    '&charRace='+encodeURIComponent(document.getElementById('raceInput').value) + 
+                    '&charBack='+encodeURIComponent(document.getElementById('backInput').value) +
+                    '&portrait='+encodeURIComponent(document.getElementById('picInput').value) + 
+                    '&str='+encodeURIComponent(document.getElementById('stri').value) + 
+                    '&dex='+encodeURIComponent(document.getElementById('dexi').value) + 
+                    '&con='+encodeURIComponent(document.getElementById('coni').value) + 
+                    '&intel='+encodeURIComponent(document.getElementById('inti').value) + 
+                    '&wis='+encodeURIComponent(document.getElementById('wisi').value) + 
+                    '&cha='+encodeURIComponent(document.getElementById('chai').value)
+    ;
+    xhr.open('POST', '/saveChar', true);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+    xhr.send(reqString);
+}
+
+function saveResReceivedHandler() {
+    let result = document.createElement('p');
+    if (this.status == 200) {
+        let res = this.response;
+        result.textContent = 'Character creation successful!';
+    } else {
+        result.textContent = 'Character creation failed! Please ensure information is complete.';
     }
-};
+    document.getElementById('log').appendChild(result);
+}
 

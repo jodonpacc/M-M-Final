@@ -48,6 +48,7 @@ block appContent
             p 
                 label(for="class") Select A Class
                     select(id="classform" name="classform" form="classform" class="classform")
+                        option(value='') Change Class
                         option(value="Mage") Mage 
                         option(value="Warrior") Warrior
                         option(value="Shadow") Shadow 
@@ -55,6 +56,7 @@ block appContent
             p
                 label(for="race") Select A Race
                     select(id="raceform" name="racelist" form="raceform")
+                        option(value='') Change Race
                         option(value="Human") Human 
                         option(value="Dwarf") Dwarf
                         option(value="Elf") Elf 
@@ -62,6 +64,7 @@ block appContent
             p 
                 label(for="back") Select A Background
                     select(id="backform" name="backlist" form="backform")
+                        option(value='') Change Background
                         option(value="Far Traveler") Far Traveler 
                         option(value="Street Urchin") Street Urchin
                         option(value="Veteran") Veteran 
@@ -80,5 +83,8 @@ block appContent
             button(type='button', onClick="updateSheet()") Update Sheet
             img#charArt(src="./pictures/who.png",height=400,width=400)
             button#artGrab(type='button', onClick="getPic()") Update Art
-            button(type="button", onClick="saveChar()") Save Character
+            button(id='saveBtn', type="button") Save Character
+
+        #log 
+
                 
