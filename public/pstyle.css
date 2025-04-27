@@ -264,3 +264,15 @@ td.hover {
   #cName {
     font-size: xx-large;
   }
+
+  #logAndSign {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .accountForm {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 0.5fr 0.5fr;
+    justify-items: center;
+  }
