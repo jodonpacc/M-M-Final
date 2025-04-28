@@ -20,3 +20,6 @@ html(lang='en')
                 label(for='password') Password: 
                     input(type="password", id='signPass', name="password", required=true)
                 input(type="submit", value="Sign Up")
+        #status-container 
+                    if error 
+                        p= error

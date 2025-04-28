@@ -20,7 +20,19 @@ app.set('view engine','pug');
 
 
 app.get('/login', (req, res) => {
-    res.render('login');
+    res.render('login', {error: req.query.error});
+});
+
+app.get('/logout', (req, res) => {
+    res.clearCookie('token', {
+        HTTPOnly: true,
+        sameSite: 'lax'
+    });
+    res.clearCookie('user', {
+        HTTPOnly: true,
+        sameSite: 'lax'
+    });
+    res.redirect('/login');
 });
 
 app.get('/', (req, resp) => {

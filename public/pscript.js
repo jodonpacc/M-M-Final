@@ -3,7 +3,7 @@ window.addEventListener("load", () =>  {
 //This here probably looks like the most scuffed part of the entire project, and that is because it is! 
 //Honestly, if the canvas wasn't a requirement, I would have scrapped it simply because of how NEEDY it 
 // is and how it loves to break if i don't give it the perfect conditions!!!
-if (window.location.href == "http://pandora00.cs.trinity.edu:3006/portrait"){ 
+if (window.location.href == "http://localhost:3006/portrait"){ 
     console.log("Maybe???")
     const canvas = document.querySelector("#canvas");
     const ctx = canvas.getContext("2d");
