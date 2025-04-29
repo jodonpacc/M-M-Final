@@ -16,6 +16,8 @@ th {
 
 td {
     background-color: black;
+    text-align: center;
+    border: 1px #333 solid;
 }
 
 td.hover {
@@ -275,4 +277,16 @@ td.hover {
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 0.5fr 0.5fr;
     justify-items: center;
+  }
+
+  .roster-table {
+    padding-bottom: 50px;
+  }
+
+  .portrait-cell {
+    background-color: white;
+  }
+
+  .roster-portrait {
+    max-width: 100px;
   }

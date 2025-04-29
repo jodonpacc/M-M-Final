@@ -41,6 +41,12 @@ app.get('/', (req, resp) => {
     else resp.render('index');
 });
 
+app.get('/roster', (req, resp) => {
+    const token = req.cookies.token;
+    if (!token) return resp.redirect('/login');
+    else resp.render('roster');
+});
+
 app.use('/pictures',express.static(process.cwd()+'/pictures'));
 
 app.get('/classes', (req, resp) => {
@@ -92,6 +98,24 @@ app.post('/saveChar', async (req,res) => {
     } catch (e) {
         res.status(400).send(e.message);
     } 
+});
+
+app.get('/lookup', async (req, res) => {
+    try {
+        let qry = req.query;
+        let search = {};
+        for (let key in qry) {
+            let value = qry[key];
+            if (value === undefined || value === null || value.trim() === '') {
+                continue;
+            }
+            search[key] = value.trim();
+        }
+        let characters = await Character.find(search, {_id: 0, user: 0});
+        res.status(200).json(characters);
+    } catch (e) {
+        res.status(400).send(e.message);
+    }
 });
 
 app.use(express.static("public"));
