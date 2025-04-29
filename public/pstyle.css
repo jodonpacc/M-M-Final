@@ -32,6 +32,20 @@ td.hover {
     
 } 
 
+#legendary {
+  font-size: 20px ;
+}
+
+/*#nameField {
+  outline-color: white;
+  outline-style: inherit;
+  outline-width: 5px;
+} */
+
+#field {
+  width: 565px;
+}
+
 #statButton {
   background-color: #333;
   overflow: hidden;
@@ -51,6 +65,44 @@ td.hover {
   background-color: white;
   color: red;
 }
+
+#saveBtn,#updateBtn,#artGrab {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 10px;
+  text-decoration: none;
+  font-size: 12px;
+  background-color: #333;
+}
+
+#classform, #backform, #raceform{
+  appearance: base-select;
+  /*background-color: black;
+  color:white;
+
+  margin-right: 20px;*/
+  float: left;
+  /*color: #f2f2f2; */
+  text-align: center;
+  padding: 16px 9px;
+  font-size: 12px;
+  background-color: #333;
+}
+
+option{
+  display: flex;
+  justify-content: flex-start;
+  gap: 20px;
+
+  border: 2px solid #ddd;
+  background: black;
+  padding: 10px;
+  transition: 0.4s;
+  color:white;
+  outline:white;
+}
+
 
 .topnav {
     background-color: #333;
@@ -78,12 +130,15 @@ td.hover {
 
   .split {
     height: 40%;
-    /*width: 49.68%; Edge to Edge */
-    width:49%;
-    position: absolute;
+    
+    width:49%; 
+    /*width: 49.68%; Edge to Edge  */
+    /*height: 300px;
+    width: 751px; */
+    position:absolute;
     /*display:flex;
     flex-direction: column; */
-    z-index: 1;
+    z-index: -1;
     overflow-x: hidden;
     /*padding-top: 20px; */
     color:white;
@@ -91,7 +146,9 @@ td.hover {
       1px 1px 2px red,
       0 0 1em blue,
       0 0 0.2em blue;
-    font-size:x-large; 
+    font-size:large; 
+    margin: 0;
+    padding: 0%;
   }
 
   
@@ -155,10 +212,10 @@ td.hover {
     text-align: center;
   }
   
-  .centered img {
+  /*.centered img {
     width: 150px;
     border-radius: 50%;
-  }
+  }*/
 
   #human {
     background-image: url("./pictures/human.jpg");
@@ -192,17 +249,53 @@ td.hover {
 
   h1 {
     text-decoration: underline;
-    text-decoration-color: purple;
-    text-decoration-thickness: 3px;
-    font: bold;
-    text-shadow: 5px black;
+    text-decoration-color: white;
+    color:black;
+    /*text-decoration-thickness: 3px;
+    font: bold; */
+    text-shadow: 15px white; 
+    text-shadow: -1px -1px 0 white, 1px -1px 0 white, -1px 1px 0 white, 1px 1px 0 white;
+    font-size: xx-large;
+    font-family: "Playwrite AU SA", cursive;
+    text-align: center;
+    padding: 10px;
+    background-image: url("./pictures/banner.jpg");
+    background-size: 100%;
+    background-position-y: 40%; 
+    background-repeat: no-repeat;
+    background-position-x: center;
+
+
+    
+    margin: 0px;
+    margin-top: 0;
+    height: 50px;
   }
+
+
+  #drawplate {
+    text-decoration: underline;
+    text-decoration-color: purple;
+    text-shadow: 5px black;
+    font-size: xx-large;
+  }
+
+
+/*#classform::picker-icon {
+  background:green;
+}
+
+#classform:open::picker-icon {
+  rotate: 180deg;
+} */
+
+
 
   #vet {
     background-image: url("./pictures/orcwar.jpg");
-    background-repeat: no-repeat;
+    /*background-repeat: no-repeat;*/
     background-position: 50% 60%;
-    background-size: 100%;
+    /*background-size: 100%; */
     color:white;
   }
 
