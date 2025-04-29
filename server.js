@@ -1,6 +1,7 @@
 const express = require ('express');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
+const {Server} = require('socket.io');
 const Character = require('./models/Character.js');
 const User = require('./models/User.js');
 const app = express();
@@ -94,6 +95,7 @@ app.post('/saveChar', async (req,res) => {
             cha: body.cha
         });
         await character.save();
+        io.emit('characterSaved', {name: body.charName});
         res.render('index')
     } catch (e) {
         res.status(400).send(e.message);
@@ -120,6 +122,15 @@ app.get('/lookup', async (req, res) => {
 
 app.use(express.static("public"));
 
-app.listen(3006, function() {
+const server = app.listen(3006, function() {
     console.log("Listening!");
  });
+
+const io = new Server(server);
+
+io.on('connection', (socket) => {
+    console.log(`Websocket ${socket.id} connected...`);
+    socket.on('disconnect', () => {
+        console.log(`Websocket ${socket.id} disconnected...`);
+    });
+});

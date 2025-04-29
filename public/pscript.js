@@ -1,4 +1,10 @@
 window.addEventListener("load", () =>  {
+const socket = io();
+socket.on('characterSaved', ({name}) => {
+    let statusMsg = document.createElement('p');
+    statusMsg.textContent = `${name} has been added to your roster!`;
+    document.getElementById('log').appendChild(statusMsg);
+});
 //Drawing Stuff
 //This here probably looks like the most scuffed part of the entire project, and that is because it is! 
 //Honestly, if the canvas wasn't a requirement, I would have scrapped it simply because of how NEEDY it 
