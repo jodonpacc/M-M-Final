@@ -68,7 +68,7 @@ td.hover {
   color: red;
 }
 
-#saveBtn,#updateBtn,#artGrab,.logBtn {
+#saveBtn,#updateBtn,#artGrab,.logBtn,#clearbtn {
   float: left;
   color: #f2f2f2;
   text-align: center;
