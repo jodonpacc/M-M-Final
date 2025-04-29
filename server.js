@@ -113,6 +113,7 @@ app.get('/lookup', async (req, res) => {
             }
             search[key] = value.trim();
         }
+        search['user'] = req.cookies.user;
         let characters = await Character.find(search, {_id: 0, user: 0});
         res.status(200).json(characters);
     } catch (e) {
