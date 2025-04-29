@@ -2,24 +2,26 @@ doctype html
 html(lang='en')
     head 
         title M&M Login
-        //script(src='accountScript.js' defer)
         link(rel="stylesheet", href="pstyle.css")
+        link(rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Monoton&family=Playwrite+AU+SA:wght@100..400&display=swap")
+
     body
+        h1#topbanner Myths and Monsters Character Creator
         #logAndSign
             form(id='logForm', class='accountForm', action="/api/auth", method="post")
-                h1 Returning user? Please log in below
+                h1(id='logHeader') Returning user? Please log in below
                 label(for='username') Email Address: 
                     input(type="text", id='logUser', name="username", required=true) 
                 label(for='password') Password: 
                     input(type="password", id='logPass', name="password", required=true)
-                input(type="submit", value="Log In") 
+                input(class='logBtn' type="submit", value="Log In") 
             form(id='signForm', class='accountForm', action="/api/user", method="post") 
-                h1 New user? Please sign up below 
+                h1(id='logHeader') New user? Please sign up below 
                 label(for='username') Email Address: 
                     input(type="text", id='signUser', name="username", required=true) 
                 label(for='password') Password: 
                     input(type="password", id='signPass', name="password", required=true)
-                input(type="submit", value="Sign Up")
+                input(class='logBtn' type="submit", value="Sign Up")
         #status-container 
                     if error 
                         p= error

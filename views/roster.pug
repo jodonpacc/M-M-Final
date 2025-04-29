@@ -5,18 +5,20 @@ html(lang='en')
         link(rel='stylesheet' href='pstyle.css')
         script(src='searchScript.js' defer)
         link(rel='icon' type='image/x-icon' href='./pictures/dice.png') 
+        link(rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Monoton&family=Playwrite+AU+SA:wght@100..400&display=swap")
+
     body 
         include includes/header.pug 
         h2 Browse Your Characters
         #form-container
-            form(action="javascript:void(0);")
-                label Name - 
+            form#roster-form(action="javascript:void(0);")
+                label(class='roster-label') Name - 
                     input#name(type="text", name="charName")
-                label Class - 
+                label(class='roster-label') Class - 
                     input#charClass(type="text", name="charclass")
-                label Race - 
+                label(class='roster-label') Race - 
                     input#race(type="text", name="charRace")
-                label Background - 
+                label(class='roster-label') Background - 
                     input#background(type="text", name="charBack")
                 #controls 
                     input(type="reset", value="Reset")

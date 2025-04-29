@@ -68,7 +68,7 @@ td.hover {
   color: red;
 }
 
-#saveBtn,#updateBtn,#artGrab {
+#saveBtn,#updateBtn,#artGrab,.logBtn {
   float: left;
   color: #f2f2f2;
   text-align: center;
@@ -249,6 +249,15 @@ option{
     background-size: 100%;
   }
 
+  #topbanner {
+    background-image: url("./pictures/banner.jpg");
+    background-size: 100%;
+    background-position-y: 40%; 
+    background-repeat: no-repeat;
+    background-position-x: center;
+    font-family: "Playwrite AU SA", cursive;
+  }
+
   h1 {
     text-decoration: underline;
     text-decoration-color: white;
@@ -258,20 +267,17 @@ option{
     text-shadow: 15px white; 
     text-shadow: -1px -1px 0 white, 1px -1px 0 white, -1px 1px 0 white, 1px 1px 0 white;
     font-size: xx-large;
-    font-family: "Playwrite AU SA", cursive;
     text-align: center;
     padding: 10px;
-    background-image: url("./pictures/banner.jpg");
-    background-size: 100%;
-    background-position-y: 40%; 
-    background-repeat: no-repeat;
-    background-position-x: center;
-
-
-    
     margin: 0px;
     margin-top: 0;
     height: 50px;
+  }
+
+  #logHeader {
+    color: white;
+    text-shadow: 15px black; 
+    text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black;
   }
 
 
@@ -372,6 +378,30 @@ option{
     justify-items: center;
   }
 
+  #log {
+    padding-top: 50px;
+  }
+
+  #roster-form {
+    border: 2px dashed #e0e0e0;
+    border-radius: 5px;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+    padding: 20px;
+    max-width: fit-content;
+  }
+  
+  .roster-label, #controls {
+    padding: 10px;
+  }
+
+  #controls {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: space-between;
+  }
+
   .roster-table {
     padding-bottom: 50px;
   }
@@ -382,4 +412,11 @@ option{
 
   .roster-portrait {
     max-width: 100px;
+  }
+
+  #status-container {
+    background-color: red;
+    text-align: center;
+    font-size: larger;
+    font-weight: bold;
   }
