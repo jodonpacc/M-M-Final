@@ -7,7 +7,7 @@ const secret = 'SorcerersOfTheBeach';
 
 router.post('/user', async (req, res) => {
     if (!req.body.username || !req.body.password) {
-        res.status(400).json({error: "Missing username and/or password"});
+        res.redirect(`/login?error=${encodeURIComponent('Missing username/password')}`);
         return;
     }
 
@@ -21,7 +21,16 @@ router.post('/user', async (req, res) => {
 
     try {
         await newUser.save();
-        res.sendStatus(201);
+        const token = jwt.encode({username: newUser.username}, secret);
+                res.cookie('user', newUser.username, {
+                    httpOnly: true,
+                    sameSite: 'lax'
+                });
+                res.cookie('token', token, {
+                    httpOnly: true,
+                    sameSite: 'lax'
+                });
+                return res.redirect('/');
     } catch (e) {
         res.status(400).send(e.message);
     }
@@ -29,13 +38,13 @@ router.post('/user', async (req, res) => {
 
 router.post('/auth', async (req, res) => {
     if (!req.body.username || !req.body.password) {
-        res.status(401).json({error: 'Missing username and/or password'});
+        res.redirect(`/login?error=${encodeURIComponent('Missing username/password')}`);
     }
 
     try {
         const user = await User.findOne({username: req.body.username});
         if (!user) {
-            res.status(401).json({error: 'Username does not exist'});
+            res.redirect(`/login?error=${encodeURIComponent('Username/password invalid')}`);
         } else {
             if (bcrypt.compareSync(req.body.password, user.passHash)) {
                 const token = jwt.encode({username: user.username}, secret);
@@ -49,7 +58,7 @@ router.post('/auth', async (req, res) => {
                 });
                 return res.redirect('/');
             } else {
-                res.status(401).json({error: "Password incorrect"});
+                res.redirect(`/login?error=${encodeURIComponent('Username/password invalid')}`);
             }
         }
     } catch (e) {

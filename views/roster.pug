@@ -1,0 +1,25 @@
+doctype html 
+html(lang='en')
+    head
+        title M&M Character Creator 
+        link(rel='stylesheet' href='pstyle.css')
+        script(src='searchScript.js' defer)
+        link(rel='icon' type='image/x-icon' href='./pictures/dice.png') 
+    body 
+        include includes/header.pug 
+        h2 Browse Your Characters
+        #form-container
+            form(action="javascript:void(0);")
+                label Name - 
+                    input#name(type="text", name="charName")
+                label Class - 
+                    input#charClass(type="text", name="charclass")
+                label Race - 
+                    input#race(type="text", name="charRace")
+                label Background - 
+                    input#background(type="text", name="charBack")
+                #controls 
+                    input(type="reset", value="Reset")
+                    button#search-button Search
+        #result-container 
+            h2 Search Results:
